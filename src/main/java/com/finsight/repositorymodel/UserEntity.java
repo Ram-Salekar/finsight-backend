@@ -1,13 +1,17 @@
 package com.finsight.repositorymodel;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -36,6 +40,15 @@ public class UserEntity extends AuditableEntity {
 
     @Column(name = "username", nullable = false, unique = true)
     private String username;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<AccountEntity> accounts = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<BudgetEntity> budgets = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<FinancialGoalEntity> financialGoals = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -99,5 +112,29 @@ public class UserEntity extends AuditableEntity {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public List<AccountEntity> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(List<AccountEntity> accounts) {
+        this.accounts = accounts;
+    }
+
+    public List<BudgetEntity> getBudgets() {
+        return budgets;
+    }
+
+    public void setBudgets(List<BudgetEntity> budgets) {
+        this.budgets = budgets;
+    }
+
+    public List<FinancialGoalEntity> getFinancialGoals() {
+        return financialGoals;
+    }
+
+    public void setFinancialGoals(List<FinancialGoalEntity> financialGoals) {
+        this.financialGoals = financialGoals;
     }
 }

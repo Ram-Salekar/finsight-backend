@@ -4,13 +4,6 @@ import com.finsight.managermodel.UserManagerModel;
 import com.finsight.repositorymodel.UserEntity;
 import org.mapstruct.Mapper;
 
-/**
- * Maps between the manager layer (domain model) and the repo layer (JPA
- * entity). Note: createdAt/createdBy/lastModifiedAt/lastModifiedBy have no
- * setters on UserEntity (inherited from AuditableEntity) — they're populated
- * automatically by Spring Data JPA auditing, not by this mapper. MapStruct
- * simply skips target properties it has no setter for.
- */
 @Mapper(componentModel = "spring")
 public interface UserRepoMapper {
 
