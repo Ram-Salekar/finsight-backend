@@ -35,6 +35,7 @@ build/
 ### Secrets / local config — never commit real credentials ###
 .env
 .env.*
+!.env.example
 application-local.properties
 application-local.yml
 application-secrets.properties
